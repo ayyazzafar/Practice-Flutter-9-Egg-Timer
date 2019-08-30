@@ -1,7 +1,6 @@
 import 'dart:async';
 
 class EggTimer {
-
   final Duration maxTime;
   final Function onTimerUpdate;
   final Stopwatch stopwatch = new Stopwatch();
@@ -40,9 +39,7 @@ class EggTimer {
   }
 
   _roundToTheNearestMinute(duration) {
-    return new Duration(
-      minutes: (duration.inSeconds / 60).round()
-    );
+    return new Duration(minutes: (duration.inSeconds / 60).round());
   }
 
   pause() {
@@ -81,7 +78,6 @@ class EggTimer {
   }
 
   _tick() {
-    print('Current time: ${_currentTime.inSeconds}');
     _currentTime = lastStartTime - stopwatch.elapsed;
 
     if (_currentTime.inSeconds > 0) {

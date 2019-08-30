@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'egg_timer_dial.dart';
+import 'arrow-painter.dart';
 
 final Color GRADIENT_TOP = const Color(0xFFF5F5F5);
 final Color GRADIENT_BOTTOM = const Color(0xFFE8E8E8);
@@ -30,28 +30,9 @@ class _EggTimerKnobState extends State<EggTimerKnob> {
         ),
         Container(
           padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [GRADIENT_TOP, GRADIENT_BOTTOM],
-            ),
-            boxShadow: [
-              BoxShadow(
-                  color: Color(0x44000000),
-                  blurRadius: 2.0,
-                  spreadRadius: 1,
-                  offset: Offset(0.0, 1.0))
-            ],
-          ),
+          decoration: drawCircle(),
           child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              // color:Colors.red,
-
-              border: Border.all(color: Color(0xFFDFDFDF), width: 1.5),
-            ),
+            decoration: drawInnerCircle(),
             child: Center(
               child: Transform(
                 transform: Matrix4.rotationZ(2 * pi * widget.rotationPercent),
@@ -69,4 +50,29 @@ class _EggTimerKnobState extends State<EggTimerKnob> {
       ],
     );
   }
+}
+
+BoxDecoration drawCircle() {
+  return BoxDecoration(
+    shape: BoxShape.circle,
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [GRADIENT_TOP, GRADIENT_BOTTOM],
+    ),
+    boxShadow: [
+      BoxShadow(
+          color: Color(0x44000000),
+          blurRadius: 2.0,
+          spreadRadius: 1,
+          offset: Offset(0.0, 1.0))
+    ],
+  );
+}
+
+BoxDecoration drawInnerCircle() {
+  return BoxDecoration(
+    shape: BoxShape.circle,
+    border: Border.all(color: Color(0xFFDFDFDF), width: 1.5),
+  );
 }
